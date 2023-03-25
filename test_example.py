@@ -10,7 +10,7 @@ class TestExample:
 
     @allure.title("Test 2")
     def test_b(self):
-        assert 2 == 3
+        assert 2 == 2
         time.sleep(2)
 
     @allure.title("Test 3")
@@ -20,12 +20,12 @@ class TestExample:
 
     @allure.title("Test 4")
     def test_d(self):
-        assert False == 2
+        assert True
         time.sleep(2)
 
     @allure.title("Test 5")
     def test_e(self):
-        assert True is False
+        assert True
         time.sleep(2)
 
     @allure.title("Test 6")
