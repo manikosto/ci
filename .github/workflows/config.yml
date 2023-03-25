@@ -24,10 +24,12 @@ jobs:
       - name: Run tests with pytest-xdist
         run: pytest -n auto --alluredir=allure-report
 
-      - name: Setup Allure
-        uses: allure-framework/allure2-action@v1
-        with:
-          version: 2.14.0
+      - name: Install Allure command line
+        run: |
+          curl -o allure-2.14.0.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.tgz
+          sudo tar -zxvf allure-2.14.0.tgz -C /opt
+          sudo ln -s /opt/allure-2.14.0/bin/allure /usr/bin/allure
+          allure --version
 
       - name: Generate Allure report
         run: allure generate --clean --output allure-report
