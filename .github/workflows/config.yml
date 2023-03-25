@@ -18,21 +18,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-xdist
+          pip install pytest pytest-xdist allure-pytest
           pip install -r requirements.txt
 
-      - name: Run tests with pytest-xdist
+      - name: Run tests with pytest-xdist and generate Allure results
         run: pytest -n auto --alluredir=allure-results
 
       - name: Generate Allure report
         run: |
           docker run --rm -v "${PWD}:/project" -w "/project" ghcr.io/allure-framework/allure-docker-service-cli:latest generate allure-results -o allure-report
-
-      - name: Deploy Allure report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./allure-report
 
       - name: Upload Allure report
         uses: actions/upload-artifact@v2
