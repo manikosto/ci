@@ -1,0 +1,8 @@
+__pycache__
+*.py[cod]
+*$py.class
+*.cover
+.venv
+venv
+env.py
+geckodriver.log

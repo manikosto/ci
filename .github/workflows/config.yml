@@ -23,3 +23,24 @@ jobs:
 
       - name: Run tests with pytest-xdist
         run: pytest -s -v -n auto
+
+      - name: Setup Allure
+        uses: allurereports/setup-allure@v1
+        with:
+          version: 2.14.0
+
+      - name: Generate Allure report
+        run: allure generate --clean --output allure-report
+
+      - name: Publish Allure report
+        uses: simple-icons/serve@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          path: allure-report
+          publish-dir: public
+
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
