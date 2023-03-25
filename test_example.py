@@ -11,7 +11,7 @@ class TestExample:
     @allure.title("Test 2")
     def test_b(self):
         assert 2 == 2
-        time.sleep(2)
+        time.sleep(2) 
 
     @allure.title("Test 3")
     def test_c(self):
